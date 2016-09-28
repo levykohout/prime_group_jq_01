@@ -1,0 +1,11 @@
+.apples, .oranges, .bananas, .grapes{
+  width: 200px;
+  height: 200px;
+  background-color: green;
+  float: left;  /* display: inline-block; puts margin between them*/
+  margin: 20px;
+
+}
+button{
+  float:right;
+}
