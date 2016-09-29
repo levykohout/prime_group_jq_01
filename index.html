@@ -10,50 +10,37 @@
 		<script src="jquery.min.js"></script>
 		<script src="script.js"></script>
 	</head>
-
+	<header>
+		<p id ='totalCash'><img id='dollar-pic' src='dollar.png' alt='dollar pic'/><span>$100</span></p>
+	</header>
 	<body>
-    <div>
-
-
-    </div>
-    <div>
-      <div class="apples">
-				<p>
-					Apples
-				</p>
-        <span id = "apple-price">Price: </span>
-				<p><span id = "apple-average">Average Price: </span></p>
-				<button id="button"> buy </button>
-      </div>
-
-      <div class="oranges">
-				<p>
-					Oranges
-				</p>
-          <span id ="orange-price"> Price:</span>
-					<p><span id = "orange-average">Average Price: </span></p>
-					<button id="button"> buy </button>
-      </div>
-      <div class="bananas">
-				<p>
-					Bananas
-				</p>
-          <span id = "banana-price">Price: </span>
-				</p><span id = "banana-average">Average Price: </span></p>
-					<button id="button"> buy </button>
-      </div>
-      <div class="grapes">
-				<p>
-					Grapes
-				</p>
-          <span id = "grape-price">Price: </span>
-					<p><span id = "grape-average">Average Price: </span></p>
-					<button id="button"> buy </button>
-      </div>
-			<div>
-				<span id="cash-left">Cash Remaining</span>
-
-			</div>
-
-  </body>
+		<div class = 'apple'>
+			<img src='apple.jpg' alt='apple image' />
+			<p class= 'price'><span>Price: 2</span></p>
+			<button id='buyApple'>Buy Apples</button>
+			<button id='sellApple'>Sell Apples</button>
+			<p id="inventory">Inventory: <span>0</span></p>
+		</div>
+		<div class = 'banana'>
+			<img src = 'banana.jpg' alt='banana image' />
+			<p class= 'price'><span>Price: 2</span></p>
+			<button id='buyBanana'>Buy Bananas</button>
+			<button id='sellBanana'>Sell Bananas</button>
+			<p id="inventory">Inventory: <span>0</span></p>
+		</div>
+		<div class = 'grape'>
+			<img src='grape.jpg' alt='grape image' />
+			<p class= 'price'><span>Price: 2</span></p>
+			<button id='buyGrape'>Buy Grapes</button>
+			<button id='sellGrape'>Sell Grapes</button>
+			<p id="inventory">Inventory: <span>0</span></p>
+		</div>
+		<div class = 'orange'>
+			<img src='orange.jpg' alt='orange image' />
+			<p class= 'price'><span>Price: 2</span></p>
+			<button id='buyOrange'>Buy Oranges</button>
+			<button id='sellOrange'>Sell Oranges</button>
+			<p id="inventory">Inventory: <span>0</span></p>
+		</div>
+	</body>
 </html>
