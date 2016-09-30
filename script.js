@@ -9,8 +9,10 @@ function Fruit (name, price, inventory, avgPrice, totalSpent) {
 	this.avePrice = avgPrice;
 	this.totalSpent = totalSpent;
 	this.priceCalculator = function() {
-		if (this.price >= 0.5 && this.price <= 9.99) {
-			this.price += (randomNumber(-50, 50)/100);
+		var tempPrice = (this.price + randomNumber(-50, 50)/100);
+		console.log(tempPrice);
+		if (tempPrice >= 0.5 && tempPrice <= 9.99) {
+			this.price = tempPrice;
 		} else if (this.price < 0.5) {
 			this.price = 0.5;
 		} else if (this.price > 9.99) {
@@ -27,9 +29,10 @@ var fruitArray = [apple, banana, grape, orange];
 var $pricePara = $('<p class="price"></p>');
 
 $(document).ready(function(){
-
+var checkWallet;
 	$('#buyApple').on('click', function(){
-		if($wallet>0){
+		checkWallet = $wallet - apple.price;
+		if(checkWallet>=0){
 		apple.inventory += 1;
 		apple.totalSpent += apple.price;
 		apple.avePrice = apple.totalSpent / apple.inventory;
@@ -43,7 +46,7 @@ $(document).ready(function(){
 	$('#sellApple').on('click', function(){
 		if (apple.inventory>0){
 		apple.inventory -= 1;
-		apple.totalSpent += apple.price;
+		apple.totalSpent -= apple.price;
 		apple.avePrice = apple.totalSpent / apple.inventory;
 		$wallet = $wallet + apple.price;
 		$('.apple').find('#inventory').find('span').remove();
@@ -53,7 +56,8 @@ $(document).ready(function(){
 	})
 
 	$('#buyBanana').on('click', function(){
-		if($wallet>0){
+		checkWallet = $wallet - banana.price;
+		if(checkWallet>=0){
 		banana.inventory += 1;
 		banana.totalSpent += banana.price;
 		banana.avePrice = banana.totalSpent / banana.inventory;
@@ -67,7 +71,7 @@ $(document).ready(function(){
 		$('#sellBanana').on('click', function(){
 			if (banana.inventory>0){
 			banana.inventory -= 1;
-			banana.totalSpent += banana.price;
+			banana.totalSpent -= banana.price;
 			banana.avePrice = banana.totalSpent / banana.inventory;
 			$wallet = $wallet + banana.price;
 			$('.banana').find('#inventory').find('span').remove();
@@ -77,7 +81,8 @@ $(document).ready(function(){
 			})
 
 	$('#buyGrape').on('click', function(){
-			if($wallet>0){
+			checkWallet = $wallet - grape.price;
+			if(checkWallet>=0){
 			grape.inventory += 1;
 			grape.totalSpent += grape.price;
 			grape.avePrice = grape.totalSpent / grape.inventory;
@@ -91,7 +96,7 @@ $(document).ready(function(){
 			$('#sellGrape').on('click', function(){
 				if (grape.inventory>0){
 				grape.inventory -= 1;
-				grape.totalSpent += grape.price;
+				grape.totalSpent -= grape.price;
 				grape.avePrice = grape.totalSpent / grape.inventory;
 				$wallet = $wallet + grape.price;
 				$('.grape').find('#inventory').find('span').remove();
@@ -101,7 +106,8 @@ $(document).ready(function(){
 				})
 
 			$('#buyOrange').on('click', function(){
-				if($wallet>0){
+				checkWallet = $wallet - orange.price;
+				if(checkWallet>=0){
 				orange.inventory += 1;
 				orange.totalSpent += orange.price;
 				orange.avePrice = orange.totalSpent / orange.inventory;
@@ -115,7 +121,7 @@ $(document).ready(function(){
 				$('#sellOrange').on('click', function(){
 				if (orange.inventory>0){
 				orange.inventory -= 1;
-				orange.totalSpent += orange.price;
+				orange.totalSpent -= orange.price;
 				orange.avePrice = orange.totalSpent / orange.inventory;
 				$wallet = $wallet + orange.price;
 				$('.orange').find('#inventory').find('span').remove();
@@ -132,20 +138,36 @@ $('button').on('click', function (){
 	$('header').find('#totalCash').append($para);
 	});
 
-	setInterval(priceUpdate, 1500);
+	var interval = setInterval(priceUpdate, 500);
 
 	function priceUpdate () {
 		apple.priceCalculator();
 		$('.apple').find('.price').find('span').remove();
-		$('.apple').find('.price').append('<span> Price: ' + apple.price.toFixed(2) +'</span>');
+		$('.apple').find('.price').append('<span> Price: $' + apple.price.toFixed(2) +'</span>');
 		banana.priceCalculator();
 		$('.banana').find('.price').find('span').remove();
-		$('.banana').find('.price').append('<span> Price: ' + banana.price.toFixed(2) +'</span>');
+		$('.banana').find('.price').append('<span> Price: $' + banana.price.toFixed(2) +'</span>');
 		grape.priceCalculator();
 		$('.grape').find('.price').find('span').remove();
-		$('.grape').find('.price').append('<span> Price: ' + grape.price.toFixed(2) +'</span>');
+		$('.grape').find('.price').append('<span> Price: $' + grape.price.toFixed(2) +'</span>');
 		orange.priceCalculator();
 		$('.orange').find('.price').find('span').remove();
-		$('.orange').find('.price').append('<span> Price: ' + orange.price.toFixed(2) +'</span>');
+		$('.orange').find('.price').append('<span> Price: $' + orange.price.toFixed(2) +'</span>');
 	}
+
+	function endGame(){
+		var $finalAppleSales =apple.inventory * apple.price;
+		var $finalBananaSales=banana.inventory * banana.price;
+		var $finalGrapeSales=grape.inventory * grape.price;
+		var $finalOrangeSales = orange.inventory * orange.price;
+		var $finalWallet = $wallet + $finalAppleSales + $finalBananaSales + $finalGrapeSales + $finalOrangeSales;
+		console.log($finalWallet);
+		var $profit = $finalWallet - 100;
+		$('#endGameMessage').find('span').remove();
+		$('#endGameMessage').append('<span>Your time is up! You made $' + $profit.fixed(2) +'</span');
+		$('#inventory').find('span').remove();
+		clearInterval(interval);
+	}
+
+	setTimeout(endGame,300000);
 });

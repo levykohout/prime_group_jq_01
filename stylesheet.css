@@ -5,7 +5,7 @@
 }
 
 img {
-  width:250px;
+  width:200px;
   height:auto;
 }
  button {
@@ -15,12 +15,12 @@ img {
  }
 
  body {
-   width:90%;
+   width:80%;
    margin: 20px auto;
  }
 
 .price {
-  padding-left:60px;
+  padding-left:20px;
 }
 
 #dollar-pic {
