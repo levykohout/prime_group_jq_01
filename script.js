@@ -155,13 +155,13 @@ $('button').on('click', function (){
 		$('.orange').find('.price').append('<span> Price: $' + orange.price.toFixed(2) +'</span>');
 	}
 
-function stopButtons(){
-	$('buton').on('click',function()
-	  {
-	    $(this).val('Please wait ...')
-	      .attr('disabled','disabled');
-	  });
-	}
+// function stopButtons(){
+// 	$('buton').on('click',function()
+// 	  {
+// 	    $(this).val('Please wait ...')
+// 	      .attr('disabled','disabled');
+// 	  });
+// 	}
 	function endGame(){
 		var $finalAppleSales =apple.inventory * apple.price;
 		var $finalBananaSales=banana.inventory * banana.price;
@@ -172,10 +172,10 @@ function stopButtons(){
 		var $profit = $finalWallet - 100;
 			$profit=$profit.toFixed(2);
 		$('#endGameMessage').find('span').remove();
-		$('#endGameMessage').append('<span>Your time is up! You made $' + $profit +'</span');
-		$('#inventory').find('span').remove();
+		$('#endGameMessage').append('<span>Your time is up! You made $' + $profit +'. Refresh the page to play again!</span');
+
 		clearInterval(interval);
-		stopButtons();
+		$('button').attr('disabled','disabled');
 		console.log('Everything freeze');
 	}
 
