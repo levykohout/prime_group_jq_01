@@ -138,7 +138,8 @@ $('button').on('click', function (){
 	$('header').find('#totalCash').append($para);
 	});
 
-	var interval = setInterval(priceUpdate, 500);
+	var interval = setInterval(priceUpdate, 1500); //runs priceUpdate function every 15 sec.
+
 
 	function priceUpdate () {
 		apple.priceCalculator();
@@ -155,29 +156,26 @@ $('button').on('click', function (){
 		$('.orange').find('.price').append('<span> Price: $' + orange.price.toFixed(2) +'</span>');
 	}
 
-// function stopButtons(){
-// 	$('buton').on('click',function()
-// 	  {
-// 	    $(this).val('Please wait ...')
-// 	      .attr('disabled','disabled');
-// 	  });
-// 	}
+
 	function endGame(){
+		clearInterval(interval); //stops the priceCalculator function
+
+//takes whatever is left in the inventory and current price.
 		var $finalAppleSales =apple.inventory * apple.price;
 		var $finalBananaSales=banana.inventory * banana.price;
 		var $finalGrapeSales=grape.inventory * grape.price;
 		var $finalOrangeSales = orange.inventory * orange.price;
 		var $finalWallet = $wallet + $finalAppleSales + $finalBananaSales + $finalGrapeSales + $finalOrangeSales;
 		console.log($finalWallet);
-		var $profit = $finalWallet - 100;
+		var $profit = $finalWallet - 100; //calculates total profit
 			$profit=$profit.toFixed(2);
 		$('#endGameMessage').find('span').remove();
 		$('#endGameMessage').append('<span>Your time is up! You made $' + $profit +'. Refresh the page to play again!</span');
 
-		clearInterval(interval);
-		$('button').attr('disabled','disabled');
+
+		$('button').attr('disabled','disabled'); //disable all the buttons
 		console.log('Everything freeze');
 	}
 
-	setTimeout(endGame,300000);
+	setTimeout(endGame,300000); //calls endGame function after 5 minutes
 });
