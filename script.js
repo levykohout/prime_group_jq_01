@@ -155,6 +155,13 @@ $('button').on('click', function (){
 		$('.orange').find('.price').append('<span> Price: $' + orange.price.toFixed(2) +'</span>');
 	}
 
+function stopButtons(){
+	$('buton').on('click',function()
+	  {
+	    $(this).val('Please wait ...')
+	      .attr('disabled','disabled');
+	  });
+	}
 	function endGame(){
 		var $finalAppleSales =apple.inventory * apple.price;
 		var $finalBananaSales=banana.inventory * banana.price;
@@ -162,12 +169,14 @@ $('button').on('click', function (){
 		var $finalOrangeSales = orange.inventory * orange.price;
 		var $finalWallet = $wallet + $finalAppleSales + $finalBananaSales + $finalGrapeSales + $finalOrangeSales;
 		console.log($finalWallet);
-		var $profit = ($finalWallet - 100;
+		var $profit = $finalWallet - 100;
 			$profit=$profit.toFixed(2);
 		$('#endGameMessage').find('span').remove();
 		$('#endGameMessage').append('<span>Your time is up! You made $' + $profit +'</span');
 		$('#inventory').find('span').remove();
 		clearInterval(interval);
+		stopButtons();
+		console.log('Everything freeze');
 	}
 
 	setTimeout(endGame,300000);
