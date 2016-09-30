@@ -162,9 +162,10 @@ $('button').on('click', function (){
 		var $finalOrangeSales = orange.inventory * orange.price;
 		var $finalWallet = $wallet + $finalAppleSales + $finalBananaSales + $finalGrapeSales + $finalOrangeSales;
 		console.log($finalWallet);
-		var $profit = $finalWallet - 100;
+		var $profit = ($finalWallet - 100;
+			$profit=$profit.toFixed(2);
 		$('#endGameMessage').find('span').remove();
-		$('#endGameMessage').append('<span>Your time is up! You made $' + $profit.fixed(2) +'</span');
+		$('#endGameMessage').append('<span>Your time is up! You made $' + $profit +'</span');
 		$('#inventory').find('span').remove();
 		clearInterval(interval);
 	}
